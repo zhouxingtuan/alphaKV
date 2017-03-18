@@ -13,7 +13,7 @@
 
 NS_HIVE_BEGIN
 
-#define ALPHAKV_HASH_SLOT 65536
+#define ALPHAKV_HASH_SLOT 4096
 
 class AlphaKV
 {

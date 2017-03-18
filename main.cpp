@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <chrono>
+#include <thread>
 #include <time.h>
 #include "alphakv.hpp"
 USING_NS_HIVE;
@@ -37,7 +38,7 @@ int main(int argc, const char * argv[]) {
 		int64 getFailedCount = 0;
 		int64 setFailedCount = 0;
 		char key[32] = {0};
-		for(int64 i=1000000;i>=0;--i){
+		for(int64 i=100000;i>=0;--i){
 			sprintf(key, "%08lld", i);
 			result = pKey->set(key, 8, (char*)&i, sizeof(int64));
 			if(false == result){
@@ -66,6 +67,9 @@ int main(int argc, const char * argv[]) {
 		}
 		
 	}
+	std::chrono::milliseconds timespan(10*1000); // or whatever
+	std::this_thread::sleep_for(timespan);
+	
 	delete pKey;
 	
     return 0;
