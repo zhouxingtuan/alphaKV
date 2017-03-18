@@ -27,7 +27,7 @@ int main(int argc, const char * argv[]) {
 	
 	AlphaKV* pKey = new AlphaKV();
 	int64 openT = get_time_us();
-	bool result = pKey->openDB("alphakv");
+	bool result = pKey->openDB("mydb");
 	int64 openE = get_time_us();
 	fprintf(stderr, "open key cost time us = %lld\n", openE-openT);
 	if(true == result){
