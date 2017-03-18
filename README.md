@@ -16,4 +16,12 @@ uint32 valueLength;
 
 char* ptr = pKey->get(key, keyLength, &valueLength);
 
+# More
+You can redefine the ALPHAKV_HASH_SLOT to get a suitable hash size, which is define in alphakv.hpp file
+
+#define ALPHAKV_HASH_SLOT 65536
+
+If you want to know more, read the source code 233
+
+
 
