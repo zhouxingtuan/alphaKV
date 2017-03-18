@@ -8,7 +8,7 @@ USING_NS_HIVE;
 
 AlphaKV* pKey = new AlphaKV();
 
-bool result = pKey->openDB("alphakv");
+bool result = pKey->openDB("mydb");
 
 result = pKey->set(key, keyLength, value, valueLength);
 
