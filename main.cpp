@@ -9,7 +9,7 @@
 #include <iostream>
 #include <chrono>
 #include <time.h>
-#include "keyvalue.hpp"
+#include "alphakv.hpp"
 USING_NS_HIVE;
 
 inline int64 get_time_us(void){
@@ -20,47 +20,6 @@ inline int64 get_time_ms(void){
 	std::chrono::time_point<std::chrono::system_clock> p = std::chrono::system_clock::now();
 	return (int64)std::chrono::duration_cast<std::chrono::milliseconds>(p.time_since_epoch()).count();
 }
-
-class AlphaKV
-{
-public:
-	typedef KeyValue<65536> KeyValueData;
-	KeyValueData* m_pDB;
-	CharVector m_buffer;
-public:
-	AlphaKV(void) : m_pDB(NULL){}
-	virtual ~AlphaKV(void){
-		closeDB();
-	}
-	
-	bool openDB(const char* name){
-		if(NULL != m_pDB){
-			return false;
-		}
-		m_pDB = new KeyValueData(name);
-		return (FILE_OK == m_pDB->openDB());
-	}
-	void closeDB(){
-		if(NULL != m_pDB){
-			m_pDB->closeDB();
-			delete m_pDB;
-			m_pDB = NULL;
-		}
-	}
-	char* get(const char* key, uint32 keyLength, uint32* length){
-		m_buffer.clear();
-		int result = m_pDB->get(key, keyLength, m_buffer);
-		if(FILE_OK == result){
-			*length = *(int*)(m_buffer.data());
-			return m_buffer.data() + sizeof(int);
-		}
-		return NULL;
-	}
-	bool set(const char* key, uint32 keyLength, const char* value, uint32 valueLength){
-		int result = m_pDB->set(key, keyLength, value, valueLength, true, false);
-		return (FILE_OK == result);
-	}
-};
 
 int main(int argc, const char * argv[]) {
 	// insert code here...
