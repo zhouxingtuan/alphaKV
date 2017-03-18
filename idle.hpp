@@ -37,7 +37,7 @@ public:
 			return NULL;
 		}
 		// 优先查找上一个记录的最大的段
-		if(m_maxIdleSize > size){
+		if((uint64)m_maxIdleSize > size){
 			*index = m_maxIdleIndex;
 			return &m_idles[m_maxIdleIndex];
 		}
@@ -52,29 +52,17 @@ public:
 		for(int64 i = arraySize - 1; i > -1; --i){
 			_NODE_ &node = m_idles[i];
 			emptySize = node.size;
-			if(emptySize > m_maxIdleSize){
+			if(emptySize > (uint64)m_maxIdleSize){
 				m_maxIdleSize = emptySize;
 				m_maxIdleIndex = i;
 			}
 		}
 		m_isMaxIdleNew = true;
-		if(m_maxIdleSize > size){
+		if((uint64)m_maxIdleSize > size){
 			*index = m_maxIdleIndex;
 			return &m_idles[m_maxIdleIndex];
 		}
 		return NULL;
-//		uint64 emptySize;
-//		// 从尾部获取数据，这样在发生移除节点时erase更高效
-//		for(int64 i = arraySize - 1; i > -1; --i){
-//			//		for(int64 i=0; i<arraySize; ++i){
-//			_NODE_ &node = m_idles[i];
-//			emptySize = node.size;
-//			if(emptySize >= size){
-//				*index = i;
-//				return &node;
-//			}
-//		}
-//		return NULL;
 	}
 	// 添加一个新的空闲数据信息
 	inline void setIdleNode(uint64 offset, uint64 size){

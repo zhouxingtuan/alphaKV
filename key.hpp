@@ -185,7 +185,6 @@ public:
 		}
 		// 保存新的节点数据
 		KeyStorage keyS;
-//		memset(&keyS, 0, sizeof(KeyStorage));
 		keyS.value = value;
 		keyS.setKey(key, (uint8)length);
 		int64 offset;

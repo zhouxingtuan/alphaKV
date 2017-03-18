@@ -165,17 +165,6 @@ public:
 	inline int del(const char* key, int64 keyLen){
 		_TYPE_ node;
 		int result;
-//		_TYPE_* pNode;
-//		result = m_pKeyOffset->get(key, keyLen, &pNode);
-//		if(result != FILE_OK){
-//			return result;
-//		}
-//		
-//		uint64 nodeSize = pNode->size;
-//		if(nodeSize == 0){
-//			return FERR_BLOCK_EMPTY;
-//		}
-//		uint64 nodeOffset = pNode->offset;
 		result = m_pKeyOffset->del(key, keyLen, node);
 		if(result != FILE_OK){
 			return result;
