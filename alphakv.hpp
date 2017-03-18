@@ -13,10 +13,12 @@
 
 NS_HIVE_BEGIN
 
+#define ALPHAKV_HASH_SLOT 65536
+
 class AlphaKV
 {
 public:
-	typedef KeyValue<65536> KeyValueData;
+	typedef KeyValue<ALPHAKV_HASH_SLOT> KeyValueData;
 	KeyValueData* m_pDB;
 	CharVector m_buffer;
 public:
