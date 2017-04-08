@@ -14,11 +14,11 @@ A simple key-value database, fast and lightweight. Support Linux/Mac/IOS/Android
 # More
 1) You can redefine the ALPHAKV_HASH_SLOT to get a suitable hash size, which is define in alphakv.hpp file
 
-#define ALPHAKV_HASH_SLOT 65536
+    #define ALPHAKV_HASH_SLOT 65536
 
 2) You can change the minimum size of storage cost for every value saving, which is define in file.hpp file
 
-#define BLOCK_SIZE 64
+    #define BLOCK_SIZE 64
 
 If you want to know more, read the source code 233
 
