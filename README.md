@@ -2,19 +2,14 @@
 A simple key-value database, fast and lightweight. Support Linux/Mac/IOS/Android
 
 # How to Use
-  #include "alphakv.hpp"
 
-  USING_NS_HIVE;
-
-  AlphaKV* pKey = new AlphaKV();
-
-  bool result = pKey->openDB("mydb");
-
-  result = pKey->set(key, keyLength, value, valueLength);
-
-  uint32 valueLength;
-
-  char* value = pKey->get(key, keyLength, &valueLength);
+    #include "alphakv.hpp"
+    USING_NS_HIVE;
+    AlphaKV* pKey = new AlphaKV();
+    bool result = pKey->openDB("mydb");
+    result = pKey->set(key, keyLength, value, valueLength);
+    uint32 valueLength;
+    char* value = pKey->get(key, keyLength, &valueLength);
 
 # More
 1) You can redefine the ALPHAKV_HASH_SLOT to get a suitable hash size, which is define in alphakv.hpp file
