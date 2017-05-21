@@ -130,9 +130,9 @@ public:
 		_TYPE_ value;					// value的数值
 		char key[MAX_KEY_LENGTH];		// key的值
 		inline uint8 getKeyLength(void) const { return (uint8)(key[0]); }
-		inline void setKeyLength(uint8 length) { (*(uint8*)key) = length; }
+		inline void setKeyLength(uint8 length) { key[0] = (char)length; }
 		inline uint8 getEmptyLength(void) const { return (uint8)(key[1]); }
-		inline void setEmptyLength(uint8 length) { (*(uint8*)(key[1])) = length; }
+		inline void setEmptyLength(uint8 length) { key[1] = (char)length; }
 		inline void setKey(const char* ptr, uint8 length){
 			setKeyLength(length);
 			memcpy(key + 1, ptr, length);
