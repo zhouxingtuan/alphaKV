@@ -54,6 +54,14 @@ public:
 		int result = m_pDB->set(key, keyLength, value, valueLength, true, false);
 		return (FILE_OK == result);
 	}
+	bool del(const char* key, uint32 keyLength){
+		int result = m_pDB->del(key, keyLength);
+		return (FILE_OK == result);
+	}
+	bool replace(const char* key, uint64 length, const char* newKey, uint64 newLength){
+		int result = m_pDB->replace(key, length, newKey, newLength);
+		return (FILE_OK == result);
+	}
 };
 
 NS_HIVE_END
