@@ -99,6 +99,7 @@ public:
 					addIdleNodeAtBegin(offset, size);
 				}else{
 					beginNode.size = newSize;
+					beginNode.offset = offset;
 				}
 				return;
 			}else if(endOffset < beginNodeOffset){
