@@ -173,6 +173,7 @@ public:
 					m_idles.insert(m_idles.begin() + max, _NODE_(offset, size));
 				}else{
 					maxNode.size = newSize;
+					maxNode.offset = offset;
 				}
 				break;
 			}
