@@ -186,6 +186,7 @@ public:
 						m_idles.insert(m_idles.begin() + max, _NODE_(offset, size));
 					}else{									// 只合并到max节点
 						maxNode.size = newSize;
+						maxNode.offset = offset;
 					}
 				}else{
 					if(newSize + maxNode.size > BLOCK_MAX_IDLE_NUMBER){	// 只合并到min节点
