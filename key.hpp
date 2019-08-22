@@ -231,7 +231,7 @@ public:
 			return FERR_KEY_NOT_FOUND;
 		}
 		KeyStorage keyS;
-		keyS.setEmptyLength(keyS.getKeyLength());	// key[1] 保存原始长度
+		keyS.setEmptyLength(length);	            // key[1] 保存原始长度
 		keyS.value = 0;
 		keyS.setKeyLength(0);						// key[0] == 0 表示idle状态
 		int64 offset = itCur->second.offset;

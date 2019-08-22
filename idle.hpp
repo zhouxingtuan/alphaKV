@@ -121,12 +121,15 @@ public:
 				if(min + 1 == mid){
 					max = mid;
 					break;
-				}
+				}else if(min >= mid){
+                    max = min;
+                    break;
+                }
 				max = mid;
 				mid = (min + mid) / 2;
 			}else{
 				// 判断二分是不是应该停止；这里返回的是mid，属于mid所属的集合
-				if(mid + 1 == max){
+				if(mid + 1 == max || mid >= max){
 					min = mid;
 					mid = max;
 					break;
