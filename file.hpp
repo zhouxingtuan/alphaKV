@@ -28,16 +28,6 @@ typedef unsigned int    			uint32;
 typedef unsigned long long int  	uint64;
 #endif
 
-#ifndef uint64_t
-typedef unsigned long long int uint64_t;
-#endif
-
-#ifndef NS_HIVE_BEGIN
-#define NS_HIVE_BEGIN namespace HiveNS {
-#define NS_HIVE_END };
-#define USING_NS_HIVE using namespace HiveNS;
-#endif
-
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
