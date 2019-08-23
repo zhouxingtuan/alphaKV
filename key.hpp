@@ -181,6 +181,7 @@ public:
 			if(!saveData(&value, sizeof(_TYPE_), itCur->second.offset, 0, false)){
 				return FERR_KEY_SET_FAILED;
 			}
+			itCur->second.value = value;
 			return FILE_OK;
 		}
 		// 保存新的节点数据
