@@ -35,7 +35,6 @@ typedef unsigned long long int uint64;
 #include <string>
 #include <string.h>
 #include <sys/stat.h>
-#include <unistd.h>
 #include <unordered_map>
 #include <vector>
 
@@ -65,6 +64,8 @@ typedef unsigned long long int uint64;
 #define S_IREAD _S_IREAD
 #define S_IWRITE _S_IWRITE
 #define sprintf sprintf_s
+#else
+#include <unistd.h>
 #endif
 
 // 命名空间定义
