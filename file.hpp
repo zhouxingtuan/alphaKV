@@ -133,15 +133,17 @@ class File
 			return FILE_OK;
 		}
 		if (NULL != checkHead) {
-			char head[checkLength];
+			char *head = new char[checkLength];
 			fileSeek(0, SEEK_SET);
 			fileRead(head, 1, checkLength);
 			if (strncmp(head, checkHead, checkLength) != 0) {
 				// 发生错误了，这里需要关闭文件
 				closeReadWrite();
 				fprintf(stderr, "touchFile check error\n");
+				delete [] head;
 				return FERR_INVALID_FILE;
 			}
+			delete [] head;
 		}
 		closeReadWrite();
 		return FILE_OK;
