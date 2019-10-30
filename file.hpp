@@ -31,12 +31,9 @@ typedef unsigned long long int uint64;
 #include <algorithm>
 #include <assert.h>
 #include <limits.h>
-#include <map>
 #include <stdio.h>
-#include <string.h>
 #include <string>
 #include <sys/types.h>
-#include <unistd.h>
 #include <unordered_map>
 #include <vector>
 

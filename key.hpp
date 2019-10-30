@@ -187,7 +187,6 @@ template <typename _TYPE_, uint64 _KEY_SLOT_NUMBER_> class Key : public File
 			return *this;
 		}
 	} KeyValue;
-	//	typedef std::map<std::string, KeyValue> KeyValueMap;
 	typedef std::unordered_map<std::string, KeyValue> KeyValueMap;
 	typedef std::vector<_TYPE_> NodeVector;
 	typedef std::vector<int64> OffsetVector;
