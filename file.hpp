@@ -33,7 +33,9 @@ typedef unsigned long long int uint64;
 #include <limits.h>
 #include <stdio.h>
 #include <string>
-#include <sys/types.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <unistd.h>
 #include <unordered_map>
 #include <vector>
 
@@ -53,7 +55,6 @@ typedef unsigned long long int uint64;
 
 #ifdef _MSC_VER
 #include <io.h>
-#include <sys\stat.h>
 #define open _open
 #define close _close
 #define write _write
