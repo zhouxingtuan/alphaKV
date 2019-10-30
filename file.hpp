@@ -50,6 +50,16 @@ typedef unsigned long long int uint64;
 #define lseek lseek64
 #endif
 
+#ifdef _MSC_VER
+#include <io.h>
+#define open _open
+#define close _close
+#define write _write
+#define read _read
+#define lseek _lseek
+#define sprintf sprintf_s
+#endif
+
 // 命名空间定义
 #ifndef NS_HIVE_BEGIN
 #define NS_HIVE_BEGIN                                                                            \
@@ -159,7 +169,7 @@ class File
 		}
 #else
 		if (*mode == 'a') {
-			m_fileHandle = open(m_fileName.c_str(), O_RDWR | O_CREAT, 0);  // O_APPEND
+			m_fileHandle = _open(m_fileName.c_str(), O_RDWR | O_CREAT, 0);  // O_APPEND
 		} else {
 			m_fileHandle = open(m_fileName.c_str(), O_RDWR);
 		}
