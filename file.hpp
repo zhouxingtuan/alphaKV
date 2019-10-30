@@ -53,6 +53,7 @@ typedef unsigned long long int uint64;
 
 #ifdef _MSC_VER
 #include <io.h>
+#include <sys\stat.h>
 #define open _open
 #define close _close
 #define write _write
@@ -60,6 +61,8 @@ typedef unsigned long long int uint64;
 #define lseek _lseek
 #define O_RDWR _O_RDWR
 #define O_CREAT _O_CREAT
+#define S_IREAD _S_IREAD
+#define S_IWRITE _S_IWRITE
 #define sprintf sprintf_s
 #endif
 
@@ -172,7 +175,7 @@ class File
 		}
 #else
 		if (*mode == 'a') {
-			m_fileHandle = open(m_fileName.c_str(), O_RDWR | O_CREAT, 0);  // O_APPEND
+			m_fileHandle = open(m_fileName.c_str(), O_RDWR | O_CREAT, S_IWRITE | S_IREAD);  // O_APPEND
 		} else {
 			m_fileHandle = open(m_fileName.c_str(), O_RDWR);
 		}
