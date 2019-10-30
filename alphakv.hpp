@@ -17,48 +17,58 @@ NS_HIVE_BEGIN
 
 class AlphaKV
 {
-public:
+	public:
 	typedef KeyValue<ALPHAKV_HASH_SLOT> KeyValueData;
-	KeyValueData* m_pDB;
+	KeyValueData *m_pDB;
 	CharVector m_buffer;
-public:
-	AlphaKV(void) : m_pDB(NULL){}
-	virtual ~AlphaKV(void){
+
+	public:
+	AlphaKV(void) : m_pDB(NULL)
+	{
+	}
+	virtual ~AlphaKV(void)
+	{
 		closeDB();
 	}
-	
-	bool openDB(const char* name){
-		if(NULL != m_pDB){
+
+	bool openDB(const char *name)
+	{
+		if (NULL != m_pDB) {
 			return false;
 		}
 		m_pDB = new KeyValueData(name);
 		return (FILE_OK == m_pDB->openDB());
 	}
-	void closeDB(){
-		if(NULL != m_pDB){
+	void closeDB()
+	{
+		if (NULL != m_pDB) {
 			m_pDB->closeDB();
 			delete m_pDB;
 			m_pDB = NULL;
 		}
 	}
-	char* get(const char* key, uint32 keyLength, uint32* length){
+	char *get(const char *key, uint32 keyLength, uint32 *length)
+	{
 		m_buffer.clear();
 		int result = m_pDB->get(key, keyLength, m_buffer);
-		if(FILE_OK == result){
-			*length = *(int*)(m_buffer.data());
+		if (FILE_OK == result) {
+			*length = *(int *)(m_buffer.data());
 			return m_buffer.data() + sizeof(int);
 		}
 		return NULL;
 	}
-	bool set(const char* key, uint32 keyLength, const char* value, uint32 valueLength){
+	bool set(const char *key, uint32 keyLength, const char *value, uint32 valueLength)
+	{
 		int result = m_pDB->set(key, keyLength, value, valueLength, true, false);
 		return (FILE_OK == result);
 	}
-	bool del(const char* key, uint32 keyLength){
+	bool del(const char *key, uint32 keyLength)
+	{
 		int result = m_pDB->del(key, keyLength);
 		return (FILE_OK == result);
 	}
-	bool replace(const char* key, uint64 length, const char* newKey, uint64 newLength){
+	bool replace(const char *key, uint64 length, const char *newKey, uint64 newLength)
+	{
 		int result = m_pDB->replace(key, length, newKey, newLength);
 		return (FILE_OK == result);
 	}
