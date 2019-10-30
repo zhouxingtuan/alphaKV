@@ -66,7 +66,7 @@ int main(int argc, const char *argv[])
 		e = get_time_us();
 		fprintf(stderr, "Key e=%lld getFailedCount=%lld\n", e, getFailedCount);
 		fprintf(stderr, "Key cost us = %lld\n", e - s);
-			
+
 		std::string mykey = "welcome";
 		std::string myvalue = "hello world!";
 		result = pKey->set(mykey.c_str(), (uint32)mykey.length(), myvalue.c_str(),
@@ -80,8 +80,8 @@ int main(int argc, const char *argv[])
 			fprintf(stderr, "get myvalue length=%d data=%s\n", myvaluelen, ptr);
 		}
 	}
-	std::chrono::milliseconds timespan(10 * 1000);  // or whatever
-	std::this_thread::sleep_for(timespan);
+	// std::chrono::milliseconds timespan(10 * 1000);  // or whatever
+	// std::this_thread::sleep_for(timespan);
 
 	delete pKey;
 

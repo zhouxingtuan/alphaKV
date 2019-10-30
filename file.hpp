@@ -40,28 +40,16 @@ typedef unsigned long long int uint64;
 #include <unordered_map>
 #include <vector>
 
-// 在非苹果平台（linux）上面加载这个文件；使用open,read,write操作文件的读写
-#ifndef __APPLE__
-
-#ifdef __ANDROID__
-#include <asm/io.h>
-#define USE_STREAM_FILE
-#else
-#include <sys/io.h>
-#endif
-
-#include <fcntl.h>
-#else
-#define USE_STREAM_FILE
-#endif
-
-// 安卓平台上面需要显示的调用lseek的版本
-#ifdef USE_STREAM_FILE
+#if defined(__ANDROID__) || defined(__APPLE__)
 #define fseek fseeko
 #define ftell ftello
+#else
+// 在linux上面加载这个文件；使用open,read,write操作文件的读写
+#include <fcntl.h>
 #endif
 
 #ifdef __ANDROID__
+#include <fcntl.h>
 #define lseek lseek64
 #endif
 
