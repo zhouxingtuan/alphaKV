@@ -170,7 +170,7 @@ class File
 		}
 #else
 		if (*mode == 'a') {
-			m_fileHandle = _open(m_fileName.c_str(), O_RDWR | O_CREAT, 0);  // O_APPEND
+			m_fileHandle = open(m_fileName.c_str(), O_RDWR | O_CREAT, 0);  // O_APPEND
 		} else {
 			m_fileHandle = open(m_fileName.c_str(), O_RDWR);
 		}
