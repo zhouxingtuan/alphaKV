@@ -261,7 +261,7 @@ template <typename _TYPE_, uint64 _KEY_SLOT_NUMBER_> class Key : public File
 		value = itCur->second.value;
 		return FILE_OK;
 	}
-	inline int get(const char *key, uint64 length, _TYPE_ **value)
+	inline int get(const char *key, uint8 length, _TYPE_ **value)
 	{
 		KeyValueMap &kvMap = findKeyValueMap(key, length);
 		typename KeyValueMap::iterator itCur = kvMap.find(std::string(key, length));
@@ -271,7 +271,7 @@ template <typename _TYPE_, uint64 _KEY_SLOT_NUMBER_> class Key : public File
 		(*value) = &(itCur->second.value);
 		return FILE_OK;
 	}
-	inline int del(const char *key, uint64 length, _TYPE_ &value)
+	inline int del(const char *key, uint8 length, _TYPE_ &value)
 	{
 		KeyValueMap &kvMap = findKeyValueMap(key, length);
 		typename KeyValueMap::iterator itCur = kvMap.find(std::string(key, length));
@@ -413,7 +413,7 @@ template <typename _TYPE_, uint64 _KEY_SLOT_NUMBER_> class Key : public File
 	}
 
 	protected:
-	inline KeyValueMap &findKeyValueMap(const char *key, uint64 length)
+	inline KeyValueMap &findKeyValueMap(const char *key, uint8 length)
 	{
 		uint64 hash = binary_hash(key, (int)length, BINARY_HASH_SEED);
 		int index = hash % _KEY_SLOT_NUMBER_;

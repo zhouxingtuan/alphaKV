@@ -58,6 +58,8 @@ typedef unsigned long long int uint64;
 #define write _write
 #define read _read
 #define lseek _lseek
+#define O_RDWR _O_RDWR
+#define O_CREAT _O_CREAT
 #define sprintf sprintf_s
 #endif
 
@@ -409,15 +411,15 @@ class File
 	// block 文件读写操作
 	inline int64 fileRead(void *ptr, int64 size, int64 n)
 	{
-		return read(m_fileHandle, ptr, size * n);
+		return read(m_fileHandle, ptr, uint64(size * n));
 	}
 	inline int64 fileWrite(const void *ptr, int64 size, int64 n)
 	{
-		return write(m_fileHandle, ptr, size * n);
+		return write(m_fileHandle, ptr, uint64(size * n));
 	}
 	inline int64 fileSeek(int64 offset, int seek)
 	{
-		return lseek(m_fileHandle, offset, seek);
+		return lseek(m_fileHandle, long(offset), seek);
 	}
 	inline int64 readTell(void)
 	{
