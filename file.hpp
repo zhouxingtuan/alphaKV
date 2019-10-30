@@ -38,6 +38,7 @@ typedef unsigned long long int uint64;
 #include <vector>
 
 #if defined(__ANDROID__) || defined(__APPLE__)
+#define USE_STREAM_FILE
 #define fseek fseeko
 #define ftell ftello
 #else
@@ -150,10 +151,10 @@ class File
 				// 发生错误了，这里需要关闭文件
 				closeReadWrite();
 				fprintf(stderr, "touchFile check error\n");
-				delete [] head;
+				delete[] head;
 				return FERR_INVALID_FILE;
 			}
-			delete [] head;
+			delete[] head;
 		}
 		closeReadWrite();
 		return FILE_OK;
