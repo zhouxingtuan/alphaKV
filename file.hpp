@@ -53,6 +53,7 @@ typedef unsigned long long int uint64;
 #endif
 
 #ifdef _MSC_VER
+#define USE_STREAM_FILE
 #include <io.h>
 #define open _open
 #define close _close
@@ -272,12 +273,14 @@ class File
 				int64 alignLength = m_fileLength % expandSize;
 				if (alignLength != 0) {
 					alignLength = expandSize - alignLength;
-					char tempBuffer[expandSize];
+					char *tempBuffer = new char[expandSize];
 					memset(tempBuffer, 0, alignLength);
 					if (alignLength != fileWrite(tempBuffer, 1, alignLength)) {
 						flush();
+						delete [] tempBuffer;
 						return false;
 					}
+					delete [] tempBuffer;
 					m_fileLength += alignLength;
 				}
 			}
