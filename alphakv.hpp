@@ -62,6 +62,28 @@ public:
 		int result = m_pDB->replace(key, length, newKey, newLength);
 		return (FILE_OK == result);
 	}
+
+	char* get(uint64 key, uint32* length){
+		m_buffer.clear();
+		int result = m_pDB->get(key, m_buffer);
+		if(FILE_OK == result){
+			*length = *(int*)(m_buffer.data());
+			return m_buffer.data() + sizeof(int);
+		}
+		return NULL;
+	}
+	bool set(uint64 key, const char* value, uint32 valueLength){
+		int result = m_pDB->set(key, value, valueLength, true, false);
+		return (FILE_OK == result);
+	}
+	bool del(uint64 key){
+		int result = m_pDB->del(key);
+		return (FILE_OK == result);
+	}
+	bool replace(uint64 key, uint64 newKey){
+		int result = m_pDB->replace(key, newKey);
+		return (FILE_OK == result);
+	}
 };
 
 NS_HIVE_END

@@ -28,7 +28,7 @@ $(TARGET): main.o $(OBJS)
 $(OBJS): %.o:%.cpp %.h
 	$(CC) $(DEBUG) -c $< -o $@ $(CFLAGS)
 
-main.o:main.cpp file.hpp idle.hpp key.hpp keyvalue.hpp alphakv.hpp
+main.o:main.cpp file.hpp idle.hpp key.hpp index.hpp keyvalue.hpp alphakv.hpp
 	$(CC) $(DEBUG) -c $< -o $@ $(CFLAGS)
 
 clean:

@@ -49,6 +49,15 @@ int main(int argc, const char * argv[]) {
 			if(NULL == ptr){
 				++getFailedCount;
 			}
+
+			result = pKey->set((uint64)i, (char*)&i, sizeof(int64));
+            if(false == result){
+                ++setFailedCount;
+            }
+            ptr = pKey->get(i, &length);
+            if(NULL == ptr){
+                ++getFailedCount;
+            }
 		}
 		int64 e = get_time_us();
 		fprintf(stderr, "Key e=%lld getFailedCount=%lld setFailedCount=%lld\n", e, getFailedCount, setFailedCount);
