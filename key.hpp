@@ -16,7 +16,7 @@ NS_HIVE_BEGIN
 #define BINARY_HASH_SEED 5381
 
 #ifndef uint64_t
-typedef uint64_t uint64;
+typedef uint64 uint64_t;
 #endif
 
 inline uint64_t MurmurHash64A ( const void * key, int len, unsigned int seed )
