@@ -215,6 +215,7 @@ public:
 			m_maxIdleSize = 0;
 		}else if(emptySize > size){
 			pNode->size -= size;
+			pNode->offset += size;
 			m_maxIdleSize = pNode->size;
 		}else{
 			// ? error must be happened
